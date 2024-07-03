@@ -1,0 +1,13 @@
+services:
+  web_nginx:
+    build: ./nginx_web
+    ports:
+      - 8000:80
+  web_node:
+    image: node:20.15.0-slim
+    working_dir: /usr/src/nodeapp
+    command: bash -c "npm install && node index.js"
+    volumes:
+      - ./node_web:/usr/src/nodeapp
+    ports:
+      - 80:80
